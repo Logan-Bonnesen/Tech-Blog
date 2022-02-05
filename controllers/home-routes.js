@@ -32,7 +32,7 @@ router.get('/post/:id', (req, res) => {
 router.get('/login', (req, res) => {
     if(req.sessions.loggedIn) {
         res.redirect('/')
-        return
+        return;
     }
     res.render('login')
 });

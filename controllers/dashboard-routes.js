@@ -16,14 +16,23 @@ router.get('/', withAuth, (req, res) => {
     });
 });
 
-router.get('/update/:id', withAuth, (req,res) => {
-    Post.findByPk(req.params.id)
-}).then(data => {
-    const updatedPost =  data.get({plain: true})
-    res.render('update-posts', {layout: "dashboard", updatedPost});
-}).catch(err => {
-    if (err) throw err
-    res.status(500)
+router.get('/update/:id', withAuth, async (req, res) => {
+  try {
+    const updatedPost = await Post.findByPk(req.params.id);
+
+    if (updatedPost) {
+      const post = updatedPost.get({ plain: true });
+
+      res.render('update-posts', {
+        layout: 'dashboard',
+        post,
+      });
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.redirect('login');
+  }
 });
 
 router.get('/newpost', withAuth, (req, res) => {
