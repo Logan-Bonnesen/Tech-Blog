@@ -27,6 +27,7 @@ N/A
 This application is licensed by Mozilla.
 
 ## Walkthrough Video
+N/A
 
 ## Questions
 For any questions you can reach me at my email: Lbonnesen@gmail.com
